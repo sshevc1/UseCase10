@@ -1,0 +1,52 @@
+hello, I have the following requirements to the application:
+User
+Hello, you are an expert in C# 10, .Net and Regular Expressions. Can you help me please to create  a function with a single regular expression that successfully meets requirements below:
+•	This regular expression should validate the maximum string length (passed as parameter); it should return a match if the string length is within the acceptable range and a non-match if it is not.
+•	This regular expression should also validate that the string contains at least one uppercase letter, one lowercase letter, one digit, and one special character from a predefined list: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~. It should return a match if the criteria are met and a non-match if they are not.
+•	This regular expression should validate that the string does not contain any whitespace characters (spaces, tabs, or newlines). This should return a non-match if any whitespace characters are found.
+•	The regular expression should be optimized for execution speed and simplicity. The regular expression should still fulfill all the above criteria.
+•	The regular expression should be implemented within the code in a way that it can be easily reused for various inputs.
+•	Implementation should not introduce any unexpected behavior or bugs.
+•	Clear and concise documentation should be provided for the regular expression, explaining how it works, and any caveats or limitations.
+
+Class has the following implementation:
+    public class StringEvaluator
+    {
+        public bool ValidateString(string input, int maxLength)
+        {
+            string regexPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-.\/:;<=>?@\\\\[\\\]^_`{|}~])(?!.*\s).{1," + maxLength + "}$";
+            Regex regex = new Regex(regexPattern);
+            return regex.IsMatch(input);
+        }
+    }
+
+Can you please help me create a documentation for it? I have the following requirements:
+	Application description: 1 paragraph, 2-5 Sentences.
+	Regex implementation description: 1 paragraph, 4-10 Sentences.
+	Information on how to run the developed application locally.
+
+-----------------------------------
+
+Application Description:
+
+This application provides a string evaluation service, which uses .NET's Regular Expressions to validate that a given string satisfies specific conditions. The application includes a class StringEvaluator with the function ValidateString. This function checks if the input string is within a certain length, includes at least one uppercase letter, one lowercase letter, one digit, and one special character from a specified set, and does not contain any whitespace characters. It is an invaluable tool for data validation tasks, particularly useful in scenarios such as password validation, input sanitization, and data filtering.
+
+Regex Implementation Description:
+
+The regular expression is implemented in the ValidateString function of the StringEvaluator class. The regex pattern string is built dynamically to include the maximum acceptable length. The pattern uses positive lookahead assertions to confirm the presence of at least one lowercase letter ((?=.*[a-z])), one uppercase letter ((?=.*[A-Z])), one digit ((?=.*\d)), and one special character ((?=.*[!""#$%&'()*+,-.\/:;<=>?@\\\\[\\\]^_{|}~])). It uses a negative lookahead to reject any whitespace ((?!.*\s)). The expression .{1," + maxLength + "}$specifies that the string should be within the acceptable range of 1 tomaxLength` characters. This regex is optimized for execution speed and simplicity. However, due to the nature of lookahead assertions, the performance may degrade for very long input strings.
+
+How to Run the Application Locally:
+
+Ensure you have .NET SDK installed on your machine. You can download it from Microsoft's official .NET download page.
+
+Clone the repository or download the project to your local machine.
+
+Open a terminal window and navigate to the project directory.
+
+Run the command dotnet build to build the project.
+
+If you wish to use this as a library in another application, reference the built DLL in your project.
+
+If you wish to test the StringEvaluator class directly, create a test application within the project, create an instance of StringEvaluator and call the ValidateString function with your test inputs.
+
+Run the command dotnet run from your terminal to run the application or your test suite.
